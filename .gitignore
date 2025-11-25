@@ -1,0 +1,87 @@
+# ------------------------------------
+# 1. Java / JVM Build Artifacts
+# ------------------------------------
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+!/.mvn/wrapper/maven-wrapper.jar  # Keep the wrapper JAR
+
+# Gradle
+.gradle/
+build/
+out/
+!gradle/wrapper/gradle-wrapper.jar # Keep the wrapper JAR
+# Specific to Android/non-standard Gradle builds
+.idea/libraries/
+*.iml
+
+# Junit/Jacoco/Code Coverage
+bin/
+test-output/
+jacoco.exec
+.cache/
+
+# ------------------------------------
+# 2. IDE-Specific Files
+# ------------------------------------
+
+## IntelliJ IDEA ##
+# Covers both .idea directory and .iml files
+.idea/
+*.iml
+*.iws
+*.ipr
+*.classpath
+*.project
+# Exclude specific files you might accidentally commit if .idea is already ignored
+# (Note: .idea/ is already excluded above, but these are good safeguards)
+workspace.xml
+tasks.xml
+local.properties
+.idea_modules/
+
+## VS Code ##
+.vscode/
+# Exclude commonly generated VS Code files
+.vscode/*.log
+.vscode/*.sqlite
+.vscode/extensions.json  # Environment preferences
+.vscode/settings.json    # User-specific settings
+.vscode/launch.json      # Often specific to a dev setup
+
+# --- Recommended VS Code inclusions ---
+# If your project uses specific, shared workspace settings, 
+# you might want to uncomment these lines to include them:
+# !.vscode/settings.json
+# !.vscode/extensions.json
+# ------------------------------------
+
+# ------------------------------------
+# 3. Operating System / Miscellaneous
+# ------------------------------------
+# macOS
+.DS_Store
+.localized
+# Windows
+Thumbs.db
+Desktop.ini
+# Logs
+*.log
+log/
+# Other
+temp/

@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: hanaeco-integration-test-tool
+
+# Base URL for outbound Hanaeco API requests. Override via HANAECO_BASE_URL env var.
+hanaecoBaseUrl: ${HANAECO_BASE_URL:https://example.hanaeco.local}
