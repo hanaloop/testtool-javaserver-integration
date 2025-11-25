@@ -1,6 +1,10 @@
 spring:
   application:
     name: hanaeco-integration-test-tool
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
 
 # Base URL for outbound Hanaeco API requests. Override via HANAECO_BASE_URL env var.
-hanaecoBaseUrl: ${HANAECO_BASE_URL:https://example.hanaeco.local}
+hanaecoBaseUrl: ${HANAECO_BASE_URL:http://localhost:9080}

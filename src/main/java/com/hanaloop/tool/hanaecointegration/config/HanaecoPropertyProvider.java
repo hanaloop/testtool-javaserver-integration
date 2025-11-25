@@ -1,4 +1,4 @@
-package com.hanaloop.tool.hanaeco_integration_test_tool.config;
+package com.hanaloop.tool.hanaecointegration.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
