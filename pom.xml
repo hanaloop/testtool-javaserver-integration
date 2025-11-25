@@ -60,6 +60,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+    <groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.2.6</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -92,6 +97,44 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<!-- For OpenAPI code generation -->
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>7.17.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/hanaeco-api-spec-1.8.yaml</inputSpec>
+							<generatorName>java</generatorName>
+							<library>restclient</library>
+							<skipValidateSpec>true</skipValidateSpec>
+							<configOptions>
+								<typeMappings>
+										<typeMapping>integer=Integer</typeMapping>
+										<typeMapping>int64=Long</typeMapping>
+								</typeMappings>
+								<importMappings>
+										<importMapping>Integer=java.lang.Integer</importMapping>
+								</importMappings>
+								<useSpringBoot3>true</useSpringBoot3>
+								<useJakartaEe>true</useJakartaEe>
+							</configOptions>
+
+							<apiPackage>com.hanaloop.client.api</apiPackage>
+							<modelPackage>com.hanaloop.client.model</modelPackage>
+							<invokerPackage>com.hanaloop.client.invoker</invokerPackage>
+							
+							<generateApiTests>false</generateApiTests>
+							<generateModelTests>false</generateModelTests>
+						</configuration>
+					</execution>
+				</executions>
+		</plugin>
 		</plugins>
 	</build>
 	<repositories>
