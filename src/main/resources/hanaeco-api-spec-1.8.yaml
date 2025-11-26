@@ -2937,7 +2937,17 @@ paths:
   /organizations:
     get:
       operationId: OrganizationController_getOrganizations
-      parameters: []
+      parameters:
+        - name: any
+          required: false
+          in: query
+          description: Arbitrary filter params
+          schema:
+            type: object
+            additionalProperties:
+              type: string
+          style: form
+          explode: true
       responses:
         '200':
           description: ''
@@ -22505,3 +22515,4 @@ components:
         - answerDataType
         - required
         - answers
+        

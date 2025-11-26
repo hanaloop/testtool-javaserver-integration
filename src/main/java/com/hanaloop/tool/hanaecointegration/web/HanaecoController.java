@@ -1,7 +1,12 @@
 package com.hanaloop.tool.hanaecointegration.web;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hanaloop.hanaeco.model.OrganizationDto;
 import com.hanaloop.tool.hanaecointegration.client.HanaecoClientContext;
 import com.hanaloop.tool.hanaecointegration.client.HanaecoClientDetails;
+import com.hanaloop.tool.hanaecointegration.client.OrganizationLookupService;
+import com.hanaloop.tool.hanaecointegration.client.ProductLookupService;
 import com.hanaloop.tool.hanaecointegration.config.HanaecoPropertyProvider;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -17,6 +22,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -25,13 +31,22 @@ public class HanaecoController {
 	private final HanaecoPropertyProvider propertyProvider;
 	private final HanaecoClientContext clientContext;
 	private final RestTemplate restTemplate;
+	private final OrganizationLookupService organizationLookupService;
+	private final ProductLookupService productLookupService;
+	private final ObjectMapper objectMapper;
 
 	public HanaecoController(HanaecoPropertyProvider propertyProvider,
 							 HanaecoClientContext clientContext,
-							 RestTemplate restTemplate) {
+							 RestTemplate restTemplate,
+							 OrganizationLookupService organizationLookupService,
+							 ProductLookupService productLookupService,
+							 ObjectMapper objectMapper) {
 		this.propertyProvider = propertyProvider;
 		this.clientContext = clientContext;
 		this.restTemplate = restTemplate;
+		this.organizationLookupService = organizationLookupService;
+		this.productLookupService = productLookupService;
+		this.objectMapper = objectMapper;
 	}
 
 	@GetMapping("/")
@@ -39,6 +54,86 @@ public class HanaecoController {
 		populateModel(model, null, null, null, null);
 		return "main";
 	}
+
+	@GetMapping("/organizations")
+	public String showOrganizationLookup(Model model) {
+		populateOrganizationModel(model, "", "", null, null, null);
+		return "organization";
+
+	}
+
+
+	@GetMapping("/products")
+	public String showProductsLookup(Model model) {
+		populateProductModel(model, "", "", "", null, null, null);
+		return "product";
+	}
+
+	@PostMapping("/organizations/query")
+	public String queryOrganizations(@RequestParam(required = false) String organizationId,
+									 @RequestParam(required = false) String organizationName,
+									 Model model) {
+		String organizationIdValue = organizationId != null ? organizationId.trim() : "";
+		String organizationNameValue = organizationName != null ? organizationName.trim() : "";
+
+		if (!StringUtils.hasText(organizationIdValue) && !StringUtils.hasText(organizationNameValue)) {
+			populateOrganizationModel(model,
+				organizationIdValue,
+				organizationNameValue,
+				null,
+				"Provide either an organization ID or name before querying.",
+				null);
+			return "organization";
+		}
+
+		try {
+			List<OrganizationDto> organizations = organizationLookupService.fetchOrganizations(organizationIdValue, organizationNameValue);
+			String criteriaDescription = buildOrganizationCriteriaDescription(organizationIdValue, organizationNameValue);
+			if (organizations.isEmpty()) {
+				populateOrganizationModel(model,
+					organizationIdValue,
+					organizationNameValue,
+					"No organizations matched " + criteriaDescription + ".",
+					null,
+					null);
+			} else {
+				String message = "Retrieved %d organization(s) matching %s."
+					.formatted(organizations.size(), criteriaDescription);
+				populateOrganizationModel(model,
+					organizationIdValue,
+					organizationNameValue,
+					message,
+					null,
+					toPrettyJson(organizations));
+			}
+		} catch (IllegalArgumentException | IllegalStateException ex) {
+			populateOrganizationModel(model,
+				organizationIdValue,
+				organizationNameValue,
+				null,
+				ex.getMessage(),
+				null);
+		} catch (RestClientResponseException ex) {
+			String message = "Organization lookup failed (%d): %s"
+				.formatted(ex.getRawStatusCode(), ex.getResponseBodyAsString());
+			populateOrganizationModel(model,
+				organizationIdValue,
+				organizationNameValue,
+				null,
+				message,
+				null);
+		} catch (RestClientException ex) {
+			populateOrganizationModel(model,
+				organizationIdValue,
+				organizationNameValue,
+				null,
+				"Unable to reach Hanaeco server: " + ex.getMessage(),
+				null);
+		}
+
+		return "organization";
+	}
+
 
 	@PostMapping("/configure")
 	public String configure(@RequestParam String baseUrl,
@@ -95,6 +190,45 @@ public class HanaecoController {
 							   String fetchResult,
 							   String fetchError) {
 
+		populateCommonAttributes(model);
+
+		model.addAttribute("configurationMessage", configurationMessage);
+		model.addAttribute("configurationError", configurationError);
+		model.addAttribute("fetchResult", fetchResult);
+		model.addAttribute("fetchError", fetchError);
+	}
+
+	private void populateOrganizationModel(Model model,
+										   String organizationIdFieldValue,
+										   String organizationNameFieldValue,
+										   String lookupMessage,
+										   String lookupError,
+										   String lookupResult) {
+		populateCommonAttributes(model);
+		model.addAttribute("organizationIdFieldValue", organizationIdFieldValue);
+		model.addAttribute("organizationNameFieldValue", organizationNameFieldValue);
+		model.addAttribute("organizationLookupMessage", lookupMessage);
+		model.addAttribute("organizationLookupError", lookupError);
+		model.addAttribute("organizationLookupResult", lookupResult);
+	}
+
+	private void populateProductModel(Model model,
+									  String organizationUidFieldValue,
+									  String productIdFieldValue,
+									  String productNameFieldValue,
+									  String lookupMessage,
+									  String lookupError,
+									  String lookupResult) {
+		populateCommonAttributes(model);
+		model.addAttribute("productOrganizationUidFieldValue", organizationUidFieldValue);
+		model.addAttribute("productIdFieldValue", productIdFieldValue);
+		model.addAttribute("productNameFieldValue", productNameFieldValue);
+		model.addAttribute("productLookupMessage", lookupMessage);
+		model.addAttribute("productLookupError", lookupError);
+		model.addAttribute("productLookupResult", lookupResult);
+	}
+
+	private void populateCommonAttributes(Model model) {
 		Optional<HanaecoClientDetails> current = clientContext.current();
 		String defaultBaseUrl = propertyProvider.getHanaecoBaseUrl();
 		String configuredBaseUrl = current.map(HanaecoClientDetails::baseUrl).orElse(defaultBaseUrl);
@@ -103,9 +237,23 @@ public class HanaecoController {
 		model.addAttribute("configuredBaseUrl", configuredBaseUrl);
 		model.addAttribute("apiKeyFieldValue", "");
 		model.addAttribute("configurationReady", current.isPresent());
-		model.addAttribute("configurationMessage", configurationMessage);
-		model.addAttribute("configurationError", configurationError);
-		model.addAttribute("fetchResult", fetchResult);
-		model.addAttribute("fetchError", fetchError);
+	}
+
+	private String toPrettyJson(Object dto) {
+		try {
+			return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(dto);
+		} catch (JsonProcessingException ex) {
+			return dto.toString();
+		}
+	}
+
+	private String buildOrganizationCriteriaDescription(String organizationIdValue, String organizationNameValue) {
+		if (StringUtils.hasText(organizationIdValue)) {
+			return "an ID containing '" + organizationIdValue + "'";
+		}
+		if (StringUtils.hasText(organizationNameValue)) {
+			return "a name containing '" + organizationNameValue + "'";
+		}
+		return "the supplied criteria";
 	}
 }

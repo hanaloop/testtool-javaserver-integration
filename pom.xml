@@ -70,6 +70,15 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+						<jvmArguments>
+								-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
+						</jvmArguments>
+				</configuration>
+		</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
@@ -114,6 +123,7 @@
 							<library>restclient</library>
 							<skipValidateSpec>true</skipValidateSpec>
 							<configOptions>
+                                <modelOptional>false</modelOptional>
 								<typeMappings>
 										<typeMapping>integer=Integer</typeMapping>
 										<typeMapping>int64=Long</typeMapping>
@@ -125,9 +135,9 @@
 								<useJakartaEe>true</useJakartaEe>
 							</configOptions>
 
-							<apiPackage>com.hanaloop.client.api</apiPackage>
-							<modelPackage>com.hanaloop.client.model</modelPackage>
-							<invokerPackage>com.hanaloop.client.invoker</invokerPackage>
+							<apiPackage>com.hanaloop.hanaeco.api</apiPackage>
+							<modelPackage>com.hanaloop.hanaeco.model</modelPackage>
+							<invokerPackage>com.hanaloop.hanaeco.invoker</invokerPackage>
 							
 							<generateApiTests>false</generateApiTests>
 							<generateModelTests>false</generateModelTests>

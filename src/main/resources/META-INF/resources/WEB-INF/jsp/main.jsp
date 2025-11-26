@@ -14,6 +14,7 @@
         input { width: 100%; padding: 0.5rem; margin-top: 0.25rem; border: 1px solid #c7ced6; border-radius: 4px; }
         button { margin-top: 1rem; padding: 0.5rem 1rem; border: none; border-radius: 4px; background: #2563eb; color: #fff; cursor: pointer; }
         button.secondary { background: #10b981; }
+        a.button-link { display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; border-radius: 4px; background: #f97316; color: #fff; text-decoration: none; }
         .status { margin-top: 1rem; padding: 0.75rem; border-radius: 6px; }
         .status.success { background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; }
         .status.error { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
@@ -23,6 +24,8 @@
 <body>
 <h1>HanaEco Integration Test Tool</h1>
 <p class="lead">This Java-based application integrates with the Hanaeco server through its API.</p>
+<a class="button-link" href="/organizations">Open Organization Lookup Page</a>
+<a class="button-link" href="/products" style="background:#0ea5e9;">Open Product Lookup Page</a>
 
 <form method="post" action="/configure">
     <h2>Configure Hanaeco Client</h2>

@@ -33,3 +33,12 @@ If you manually switch to a different parent and actually want the inheritance, 
 ```
 mvn clean compile
 ```
+
+> NOTE: In some cases `mvn clean compile` will fail, just try again
+
+For Debuggin:
+
+run:
+mvn spring-boot:run
+
+Then Spring Debug
