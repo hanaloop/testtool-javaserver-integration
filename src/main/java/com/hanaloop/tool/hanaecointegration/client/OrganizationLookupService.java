@@ -36,7 +36,7 @@ public class OrganizationLookupService {
 
 	private Map<String, String> buildFilters(String organizationId, String organizationName) {
 		if (StringUtils.hasText(organizationId)) {
-			return Collections.singletonMap("name%3Acontains", organizationId.trim());
+			return Collections.singletonMap("id%3Acontains", organizationId.trim());
 		}
 		if (StringUtils.hasText(organizationName)) {
 			return Collections.singletonMap("name%3Acontains", organizationName.trim());
