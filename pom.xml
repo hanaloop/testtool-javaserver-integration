@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.hanaloop.tool.</groupId>
 	<artifactId>hanaeco-integration-test-tool</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0-SNAPSHOT</version>
 	<name>hanaeco-integration-test-tool</name>
 	<description>Demo project for Hanaeco API integration based on SpringBoot</description>
 	<url/>

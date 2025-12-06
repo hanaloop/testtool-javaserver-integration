@@ -1,4 +1,4 @@
-package com.hanaloop.tool.hanaeco_integration_test_tool;
+package com.hanaloop.tool.hanaecointegration;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
