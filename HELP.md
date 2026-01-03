@@ -6,7 +6,9 @@ This is a Java-based SpringBoot application that consumes Hanaeco's API.
 
 This is a web application that uses Hanaeco's OpenAPI (former Swagger) spec to generate Java client codes.
 
-The Hanaeco OpenAPI spec is located at
+The Hanaeco OpenAPI spec can be obtained from `http://localhost:9080/apidoc-yaml`
+
+And should be copied to
 ```declarative
 src/main/resources/hanaeco-api-spec-1.8.yaml
 ```

@@ -6,7 +6,6 @@ import com.hanaloop.hanaeco.model.OrganizationDto;
 import com.hanaloop.tool.hanaecointegration.client.HanaecoClientContext;
 import com.hanaloop.tool.hanaecointegration.client.HanaecoClientDetails;
 import com.hanaloop.tool.hanaecointegration.client.OrganizationLookupService;
-import com.hanaloop.tool.hanaecointegration.client.ProductLookupService;
 import com.hanaloop.tool.hanaecointegration.config.HanaecoPropertyProvider;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -32,20 +31,17 @@ public class HanaecoController {
 	private final HanaecoClientContext clientContext;
 	private final RestTemplate restTemplate;
 	private final OrganizationLookupService organizationLookupService;
-	private final ProductLookupService productLookupService;
 	private final ObjectMapper objectMapper;
 
 	public HanaecoController(HanaecoPropertyProvider propertyProvider,
 							 HanaecoClientContext clientContext,
 							 RestTemplate restTemplate,
 							 OrganizationLookupService organizationLookupService,
-							 ProductLookupService productLookupService,
 							 ObjectMapper objectMapper) {
 		this.propertyProvider = propertyProvider;
 		this.clientContext = clientContext;
 		this.restTemplate = restTemplate;
 		this.organizationLookupService = organizationLookupService;
-		this.productLookupService = productLookupService;
 		this.objectMapper = objectMapper;
 	}
 
