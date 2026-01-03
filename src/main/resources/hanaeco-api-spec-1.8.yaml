@@ -10662,6 +10662,9 @@ components:
         - sort
         - first
         - last
+    Translations:
+      type: object
+      properties: {}
     UserSettingsType:
       type: object
       properties:
@@ -10676,6 +10679,34 @@ components:
     UserDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           nullable: true
           allOf:
@@ -10746,6 +10777,8 @@ components:
           items:
             $ref: '#/components/schemas/UserAccountDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - userType
         - userCategory
         - id
@@ -10755,6 +10788,34 @@ components:
     UserAccountDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         source:
           type: string
         sourceAccountId:
@@ -10782,6 +10843,8 @@ components:
         erefId:
           type: string
       required:
+        - createdByUid
+        - modifiedByUid
         - source
         - sourceAccountId
     ParticipantDto:
@@ -10814,10 +10877,69 @@ components:
         - messageBody
     ResourceDtoBase:
       type: object
-      properties: {}
+      properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
+      required:
+        - createdByUid
+        - modifiedByUid
     EntityDataDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -10876,12 +10998,42 @@ components:
           type: number
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - resourceType
         - resourceUid
         - data
     RegionDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -10957,6 +11109,8 @@ components:
           allOf:
             - $ref: '#/components/schemas/RegionDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - type
         - id
         - name
@@ -10966,6 +11120,34 @@ components:
     UnitDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -11009,6 +11191,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - id
         - type
         - group
@@ -11019,6 +11203,34 @@ components:
     SectorDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -11064,6 +11276,8 @@ components:
           items:
             $ref: '#/components/schemas/SectorDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - region
         - id
         - code
@@ -11071,6 +11285,34 @@ components:
     PersonDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         user:
           type: object
           nullable: true
@@ -11139,11 +11381,41 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - givenName
         - familyName
     OrganizationDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -11407,6 +11679,8 @@ components:
           type: object
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - accessLevel
         - isLocked
         - type
@@ -11420,6 +11694,34 @@ components:
     DomainDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         dateLastAccessed:
           format: date-time
           type: string
@@ -11516,6 +11818,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - isLocked
         - type
         - id
@@ -11528,6 +11832,34 @@ components:
     TranslationDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -11564,10 +11896,40 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - status
     KnoaFlowDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -11616,6 +11978,8 @@ components:
         domain:
           $ref: '#/components/schemas/DomainDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - status
         - id
         - documents
@@ -11623,6 +11987,34 @@ components:
     KnoaDocumentDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -11827,6 +12219,8 @@ components:
         chunkStats:
           type: object
       required:
+        - createdByUid
+        - modifiedByUid
         - status
         - sourceInstitution
         - sourceUrl
@@ -11842,6 +12236,46 @@ components:
     KnoaChunkDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
+        contentType:
+          type: string
+          description: MIME type of the attached content
+        mediaWidth:
+          type: number
+          description: Width of image or video media
+        mediaHight:
+          type: number
+          description: Height of image or video media
+        mediaLength:
+          type: number
+          description: Length of audio or video media
         settings:
           type: object
           nullable: true
@@ -12006,6 +12440,8 @@ components:
           items:
             $ref: '#/components/schemas/KnoaChatLogDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - isNode
         - isSystemGenerated
         - revision
@@ -12021,6 +12457,34 @@ components:
     KnoaSurveyDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -12094,12 +12558,42 @@ components:
           items:
             $ref: '#/components/schemas/KnoaChatLogDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - id
         - title
         - logs
     KnoaChatLogDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -12309,6 +12803,8 @@ components:
         user:
           $ref: '#/components/schemas/UserDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - input
         - keywords
         - referencedChunks
@@ -12330,6 +12826,34 @@ components:
     ConnectorDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -12390,6 +12914,8 @@ components:
           items:
             $ref: '#/components/schemas/ConnectionDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - type
         - targetSystem
         - id
@@ -12400,6 +12926,34 @@ components:
     OrgSiteDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         orgDivision:
           type: object
           nullable: true
@@ -12564,6 +13118,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - accounted
         - organizationUid
         - addressCountryId
@@ -12572,6 +13128,34 @@ components:
     CodeDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -12632,6 +13216,8 @@ components:
           type: number
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - type
         - code
         - name
@@ -12639,6 +13225,34 @@ components:
     OrgEmittingSourceDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -12760,6 +13374,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - accounted
         - active
         - organizationUid
@@ -12770,6 +13386,34 @@ components:
     OrgFacilityDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -12896,6 +13540,8 @@ components:
           items:
             type: string
       required:
+        - createdByUid
+        - modifiedByUid
         - accounted
         - organizationUid
         - orgSiteUid
@@ -12906,6 +13552,34 @@ components:
     ConnectionDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -12978,6 +13652,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - connectorUid
         - connector
         - id
@@ -12987,6 +13663,34 @@ components:
     OrgUserDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -13022,6 +13726,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - userUid
         - assignedBy
@@ -13051,6 +13757,34 @@ components:
     OrgUserInviteDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         additionalProps:
           nullable: true
           allOf:
@@ -13087,12 +13821,42 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - inviteeEmail
         - events
     ProductDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -13239,6 +14003,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - id
         - name
@@ -13247,6 +14013,34 @@ components:
     OrgProductionLogDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -13333,6 +14127,8 @@ components:
           type: object
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - productUid
         - periodLength
@@ -13352,6 +14148,34 @@ components:
     OrgSiteChangeLogDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -13393,6 +14217,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - orgSiteUid
         - orgSite
@@ -13401,6 +14227,34 @@ components:
     OrgFacilityProductDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -13447,6 +14301,8 @@ components:
           minimum: 0
           maximum: 1
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - orgSiteUid
         - isDeduction
@@ -13510,6 +14366,34 @@ components:
     EmissionSourceSinkDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -13644,6 +14528,8 @@ components:
           items:
             type: string
       required:
+        - createdByUid
+        - modifiedByUid
         - isSink
         - type
         - id
@@ -13656,6 +14542,34 @@ components:
     ActivityLogDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -13883,6 +14797,8 @@ components:
         costUnit:
           $ref: '#/components/schemas/UnitDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - periodLength
         - periodStartDt
@@ -13907,6 +14823,34 @@ components:
     FileDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -14000,6 +14944,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - resourceType
         - resourceUid
@@ -14012,6 +14958,34 @@ components:
     PostDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -14105,6 +15079,8 @@ components:
           items:
             $ref: '#/components/schemas/FileDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - children
         - tags
         - assignedTo
@@ -14132,6 +15108,34 @@ components:
     EmissionFactorDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -14329,6 +15333,8 @@ components:
           allOf:
             - $ref: '#/components/schemas/UnitDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - emissionSourceSinkUid
         - emissionSourceSink
         - activityTypeId
@@ -14339,6 +15345,34 @@ components:
     AssetCollectionDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -14402,6 +15436,8 @@ components:
           items:
             $ref: '#/components/schemas/EmissionFactorDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - id
         - name
         - type
@@ -14531,6 +15567,34 @@ components:
     AnnouncementDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -14580,11 +15644,41 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - disabled
         - fromDate
     SustainabilityContentDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -14685,6 +15779,8 @@ components:
           type: object
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - title
         - summary
         - contentBody
@@ -14782,6 +15878,34 @@ components:
     OrgFacilityMaintenanceLogDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -14841,6 +15965,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - orgSiteUid
         - orgFacilityUid
@@ -14849,6 +15975,34 @@ components:
     ProjectDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -15013,6 +16167,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - isExternal
         - projectType
@@ -15022,6 +16178,34 @@ components:
     ProjectCreateDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -15182,6 +16366,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - isExternal
         - projectType
@@ -15191,6 +16377,34 @@ components:
     ProjectUpdateDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -15351,6 +16565,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - isExternal
         - projectType
@@ -15360,6 +16576,34 @@ components:
     OrgPartnerDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -15573,6 +16817,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - status
         - categories
         - relationship
@@ -15583,6 +16829,34 @@ components:
     OrgRiskDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -15714,6 +16988,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - status
         - category
@@ -15724,6 +17000,34 @@ components:
     EmissionAllowanceDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -15799,6 +17103,8 @@ components:
           type: number
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - orgSiteUid
         - transactionType
@@ -15806,6 +17112,34 @@ components:
     OrgEmissionTargetDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -15957,6 +17291,8 @@ components:
           items:
             $ref: '#/components/schemas/OrgEmittingSourceEmissionTargetDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - subject
         - status
         - organizationUid
@@ -15971,6 +17307,34 @@ components:
     OrgEmittingSourceEmissionTargetDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -16066,6 +17430,8 @@ components:
           type: number
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - status
         - organizationUid
         - orgSiteUid
@@ -16078,6 +17444,34 @@ components:
     PollutantEmissionLogDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -16161,6 +17555,8 @@ components:
           allOf:
             - $ref: '#/components/schemas/UnitDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - periodLength
         - periodStartDt
@@ -16178,6 +17574,34 @@ components:
     PollutantEmissionMeasurementDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -16301,6 +17725,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - periodLength
         - periodStartDt
@@ -16318,6 +17744,34 @@ components:
     TradingPriceDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -16367,6 +17821,8 @@ components:
           type: number
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - region
         - tradingUnit
         - currencyUnit
@@ -16377,6 +17833,34 @@ components:
     EmissionDataDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -16457,6 +17941,8 @@ components:
         emissionTotal:
           type: number
       required:
+        - createdByUid
+        - modifiedByUid
         - periodLength
         - periodStartDt
         - periodEndDt
@@ -16493,6 +17979,34 @@ components:
     SupportingDocDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -16592,6 +18106,8 @@ components:
         storageType:
           type: string
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - periodStartDt
         - quantities
@@ -16599,6 +18115,34 @@ components:
     SupportingDocCreateDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -16685,6 +18229,8 @@ components:
         fileType:
           type: string
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - periodStartDt
         - quantities
@@ -16692,6 +18238,34 @@ components:
     SupportingDocUpdateDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -16778,6 +18352,8 @@ components:
         fileType:
           type: string
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - periodStartDt
         - quantities
@@ -16785,6 +18361,34 @@ components:
     OrgEmissionsProfileDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -17088,6 +18692,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - organization
         - id
@@ -17099,6 +18705,34 @@ components:
     OrgProductFootprintDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -17374,6 +19008,8 @@ components:
           items:
             $ref: '#/components/schemas/OrgProductFootprintItemDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - status
         - lcaSystemBoundary
         - organizationUid
@@ -17394,6 +19030,34 @@ components:
     OrgProductFootprintItemDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -17589,6 +19253,8 @@ components:
         emissionSourceSink:
           $ref: '#/components/schemas/EmissionSourceSinkDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - productFootprintUid
         - productFootprint
@@ -17596,6 +19262,34 @@ components:
     OrgFootprintDeclarationDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -17747,6 +19441,8 @@ components:
           items:
             $ref: '#/components/schemas/OrgFootprintDeclarationItemDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - purpose
         - status
         - organizationUid
@@ -17759,6 +19455,34 @@ components:
     OrgFootprintDeclarationItemDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -17984,6 +19708,8 @@ components:
         biomassContentUnit:
           $ref: '#/components/schemas/UnitDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - footprintDeclUid
         - footprintDecl
@@ -17995,6 +19721,34 @@ components:
     ActivityLogItemDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -18258,6 +20012,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - periodLength
         - periodStartDt
@@ -18302,6 +20058,34 @@ components:
     OrgVerificationReportDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -18415,6 +20199,8 @@ components:
           items:
             type: object
       required:
+        - createdByUid
+        - modifiedByUid
         - docId
         - status
         - tags
@@ -18514,6 +20300,34 @@ components:
     DataFlowDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -18569,6 +20383,8 @@ components:
           items:
             type: string
       required:
+        - createdByUid
+        - modifiedByUid
         - id
         - tags
         - composition
@@ -18578,6 +20394,34 @@ components:
     QuestionAnswerDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -18623,6 +20467,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - attemptNum
         - questionnaireResponseUid
         - questionnaireResponse
@@ -18631,6 +20477,34 @@ components:
     QuestionnaireResponseDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -18689,6 +20563,8 @@ components:
           type: string
           nullable: true
       required:
+        - createdByUid
+        - modifiedByUid
         - status
         - attemptNum
         - organizationUid
@@ -18698,6 +20574,34 @@ components:
     QuestionnaireDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -18785,6 +20689,8 @@ components:
         responseCount:
           type: number
       required:
+        - createdByUid
+        - modifiedByUid
         - organizationUid
         - id
         - title
@@ -18794,6 +20700,34 @@ components:
     QuestionDto:
       type: object
       properties:
+        sid:
+          type: number
+          description: Sequential id used internally
+        uid:
+          type: string
+          description: Unique identifier of the resource
+        createdAt:
+          type: string
+          description: Creation timestamp
+        createdByUid:
+          type: string
+          description: User UID that created the resource
+        modifiedAt:
+          type: string
+          description: Last modification timestamp
+        modifiedByUid:
+          type: string
+          description: User UID that last modified the resource
+        deletedAt:
+          type: string
+          description: Soft deletion timestamp
+        deleteFlag:
+          type: boolean
+          description: Soft delete flag
+        translations:
+          description: Field translations by language
+          allOf:
+            - $ref: '#/components/schemas/Translations'
         settings:
           type: object
           nullable: true
@@ -18867,6 +20801,8 @@ components:
           items:
             $ref: '#/components/schemas/QuestionAnswerDto'
       required:
+        - createdByUid
+        - modifiedByUid
         - questionnaireUid
         - questionnaire
         - id

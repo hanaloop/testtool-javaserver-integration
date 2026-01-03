@@ -119,6 +119,7 @@
 /Users/ysahnpark/workspace/hanaloop/platform/hanaeco-tools/testtool-javaserver-integration/target/generated-sources/openapi/src/main/java/com/hanaloop/hanaeco/model/QuestionnaireResponseDto.java
 /Users/ysahnpark/workspace/hanaloop/platform/hanaeco-tools/testtool-javaserver-integration/target/generated-sources/openapi/src/main/java/com/hanaloop/hanaeco/model/RegionControllerGetRegionsPaged200Response.java
 /Users/ysahnpark/workspace/hanaloop/platform/hanaeco-tools/testtool-javaserver-integration/target/generated-sources/openapi/src/main/java/com/hanaloop/hanaeco/model/RegionDto.java
+/Users/ysahnpark/workspace/hanaloop/platform/hanaeco-tools/testtool-javaserver-integration/target/generated-sources/openapi/src/main/java/com/hanaloop/hanaeco/model/ResourceDtoBase.java
 /Users/ysahnpark/workspace/hanaloop/platform/hanaeco-tools/testtool-javaserver-integration/target/generated-sources/openapi/src/main/java/com/hanaloop/hanaeco/model/RoleAssignment.java
 /Users/ysahnpark/workspace/hanaloop/platform/hanaeco-tools/testtool-javaserver-integration/target/generated-sources/openapi/src/main/java/com/hanaloop/hanaeco/model/SectorControllerGetSectorsPaged200Response.java
 /Users/ysahnpark/workspace/hanaloop/platform/hanaeco-tools/testtool-javaserver-integration/target/generated-sources/openapi/src/main/java/com/hanaloop/hanaeco/model/SectorDto.java
