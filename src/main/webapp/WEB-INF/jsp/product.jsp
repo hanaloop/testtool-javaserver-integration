@@ -25,6 +25,7 @@
 <nav>
     <a class="nav-link" href="/">Back to configuration</a>
     <a class="nav-link" href="/organizations">Organization lookup</a>
+    <a class="nav-link" href="/product-emissionfactors">Product emission factors</a>
     <span>Targeting <code>${configuredBaseUrl}</code></span>
 </nav>
 

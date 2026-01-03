@@ -3,10 +3,12 @@ package com.hanaloop.tool.hanaecointegration.web;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hanaloop.hanaeco.model.OrganizationDto;
+import com.hanaloop.hanaeco.model.EmissionFactorDto;
 import com.hanaloop.hanaeco.model.ProductDto;
 import com.hanaloop.tool.hanaecointegration.client.HanaecoClientContext;
 import com.hanaloop.tool.hanaecointegration.client.HanaecoClientDetails;
 import com.hanaloop.tool.hanaecointegration.client.OrganizationLookupService;
+import com.hanaloop.tool.hanaecointegration.client.ProductEmissionFactorLookupService;
 import com.hanaloop.tool.hanaecointegration.client.ProductLookupService;
 import com.hanaloop.tool.hanaecointegration.config.HanaecoPropertyProvider;
 import org.springframework.http.HttpEntity;
@@ -35,6 +37,7 @@ public class HanaecoController {
 	private final RestTemplate restTemplate;
 	private final OrganizationLookupService organizationLookupService;
 	private final ProductLookupService productLookupService;
+	private final ProductEmissionFactorLookupService productEmissionFactorLookupService;
 	private final ObjectMapper objectMapper;
 
 	public HanaecoController(HanaecoPropertyProvider propertyProvider,
@@ -42,12 +45,14 @@ public class HanaecoController {
 							 RestTemplate restTemplate,
 							 OrganizationLookupService organizationLookupService,
 							 ProductLookupService productLookupService,
+							 ProductEmissionFactorLookupService productEmissionFactorLookupService,
 							 ObjectMapper objectMapper) {
 		this.propertyProvider = propertyProvider;
 		this.clientContext = clientContext;
 		this.restTemplate = restTemplate;
 		this.organizationLookupService = organizationLookupService;
 		this.productLookupService = productLookupService;
+		this.productEmissionFactorLookupService = productEmissionFactorLookupService;
 		this.objectMapper = objectMapper;
 	}
 
@@ -69,6 +74,12 @@ public class HanaecoController {
 	public String showProductsLookup(Model model) {
 		populateProductModel(model, "", "", "", "", null, null, null);
 		return "product";
+	}
+
+	@GetMapping("/product-emissionfactors")
+	public String showProductEmissionFactors(Model model) {
+		populateProductEmissionFactorModel(model, "", "", null, null, null);
+		return "product-emissionfactor";
 	}
 
 	@PostMapping("/organizations/query")
@@ -221,6 +232,71 @@ public class HanaecoController {
 		return "product";
 	}
 
+	@PostMapping("/product-emissionfactors/query")
+	public String queryProductEmissionFactors(@RequestParam(required = false) String productUid,
+											  @RequestParam(required = false) String year,
+											  Model model) {
+		String productUidValue = productUid != null ? productUid.trim() : "";
+		String yearValue = year != null ? year.trim() : "";
+
+		if (!StringUtils.hasText(productUidValue)) {
+			populateProductEmissionFactorModel(model,
+				productUidValue,
+				yearValue,
+				null,
+				"Provide a product UID before querying emission factors.",
+				null);
+			return "product-emissionfactor";
+		}
+
+		try {
+			List<EmissionFactorDto> emissionFactors = productEmissionFactorLookupService.fetchEmissionFactors(productUidValue, yearValue);
+			String criteriaDescription = buildEmissionFactorCriteriaDescription(productUidValue, yearValue);
+			if (emissionFactors.isEmpty()) {
+				populateProductEmissionFactorModel(model,
+					productUidValue,
+					yearValue,
+					"No emission factors matched " + criteriaDescription + ".",
+					null,
+					null);
+			} else {
+				String message = "Retrieved %d emission factor(s) matching %s."
+					.formatted(emissionFactors.size(), criteriaDescription);
+				populateProductEmissionFactorModel(model,
+					productUidValue,
+					yearValue,
+					message,
+					null,
+					toPrettyJson(emissionFactors));
+			}
+		} catch (IllegalArgumentException | IllegalStateException ex) {
+			populateProductEmissionFactorModel(model,
+				productUidValue,
+				yearValue,
+				null,
+				ex.getMessage(),
+				null);
+		} catch (RestClientResponseException ex) {
+			String message = "Emission factor lookup failed (%d): %s"
+				.formatted(ex.getRawStatusCode(), ex.getResponseBodyAsString());
+			populateProductEmissionFactorModel(model,
+				productUidValue,
+				yearValue,
+				null,
+				message,
+				null);
+		} catch (RestClientException ex) {
+			populateProductEmissionFactorModel(model,
+				productUidValue,
+				yearValue,
+				null,
+				"Unable to reach Hanaeco server: " + ex.getMessage(),
+				null);
+		}
+
+		return "product-emissionfactor";
+	}
+
 
 	@PostMapping("/configure")
 	public String configure(@RequestParam String baseUrl,
@@ -317,6 +393,20 @@ public class HanaecoController {
 		model.addAttribute("productLookupResult", lookupResult);
 	}
 
+	private void populateProductEmissionFactorModel(Model model,
+												   String productUidFieldValue,
+												   String yearFieldValue,
+												   String lookupMessage,
+												   String lookupError,
+												   String lookupResult) {
+		populateCommonAttributes(model);
+		model.addAttribute("emissionFactorProductUidFieldValue", productUidFieldValue);
+		model.addAttribute("emissionFactorYearFieldValue", yearFieldValue);
+		model.addAttribute("emissionFactorLookupMessage", lookupMessage);
+		model.addAttribute("emissionFactorLookupError", lookupError);
+		model.addAttribute("emissionFactorLookupResult", lookupResult);
+	}
+
 	private void populateCommonAttributes(Model model) {
 		Optional<HanaecoClientDetails> current = clientContext.current();
 		String defaultBaseUrl = propertyProvider.getHanaecoBaseUrl();
@@ -350,6 +440,15 @@ public class HanaecoController {
 		}
 		if (StringUtils.hasText(cnCodeIdValue)) {
 			parts.add("CN code '" + cnCodeIdValue + "'");
+		}
+		return String.join(", ", parts);
+	}
+
+	private String buildEmissionFactorCriteriaDescription(String productUidValue, String yearValue) {
+		List<String> parts = new ArrayList<>();
+		parts.add("product UID '" + productUidValue + "'");
+		if (StringUtils.hasText(yearValue)) {
+			parts.add("year '" + yearValue + "'");
 		}
 		return String.join(", ", parts);
 	}

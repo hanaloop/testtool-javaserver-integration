@@ -2,6 +2,7 @@
 /Users/ysahnpark/workspace/hanaloop/platform/hanaeco-tools/testtool-javaserver-integration/src/main/java/com/hanaloop/tool/hanaecointegration/client/HanaecoClientContext.java
 /Users/ysahnpark/workspace/hanaloop/platform/hanaeco-tools/testtool-javaserver-integration/src/main/java/com/hanaloop/tool/hanaecointegration/client/HanaecoClientDetails.java
 /Users/ysahnpark/workspace/hanaloop/platform/hanaeco-tools/testtool-javaserver-integration/src/main/java/com/hanaloop/tool/hanaecointegration/client/OrganizationLookupService.java
+/Users/ysahnpark/workspace/hanaloop/platform/hanaeco-tools/testtool-javaserver-integration/src/main/java/com/hanaloop/tool/hanaecointegration/client/ProductEmissionFactorLookupService.java
 /Users/ysahnpark/workspace/hanaloop/platform/hanaeco-tools/testtool-javaserver-integration/src/main/java/com/hanaloop/tool/hanaecointegration/client/ProductLookupService.java
 /Users/ysahnpark/workspace/hanaloop/platform/hanaeco-tools/testtool-javaserver-integration/src/main/java/com/hanaloop/tool/hanaecointegration/config/HanaecoPropertyProvider.java
 /Users/ysahnpark/workspace/hanaloop/platform/hanaeco-tools/testtool-javaserver-integration/src/main/java/com/hanaloop/tool/hanaecointegration/web/HanaecoController.java
