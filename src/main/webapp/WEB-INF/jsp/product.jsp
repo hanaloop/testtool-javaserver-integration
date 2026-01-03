@@ -29,7 +29,7 @@
 </nav>
 
 <h1>Product Lookup</h1>
-<p class="lead">Use the generated Hanaeco client to fetch products via <code>/organization/products</code>.</p>
+<p class="lead">Use the generated Hanaeco client to fetch products via <code>/v1/organization/products/query</code>.</p>
 
 <c:if test="${!configurationReady}">
     <div class="status info">
@@ -38,7 +38,7 @@
 </c:if>
 
 <form method="post" action="/products/query">
-    <p>Enter the organization UID, then optionally filter the results by product ID or name.</p>
+    <p>Enter the organization UID, then optionally filter by product identifier, product ID, or CN code ID.</p>
 
     <label for="organizationUid">Organization UID</label>
     <input type="text"
@@ -48,18 +48,25 @@
            placeholder="ex: org_xid_12345"
            required/>
 
-    <label for="productId">Product UID</label>
+    <label for="productIdentifier">Product Identifier</label>
+    <input type="text"
+           id="productIdentifier"
+           name="productIdentifier"
+           value="${productIdentifierFieldValue}"
+           placeholder="optional exact match"/>
+
+    <label for="productId">Product ID</label>
     <input type="text"
            id="productId"
            name="productId"
            value="${productIdFieldValue}"
            placeholder="optional exact match"/>
 
-    <label for="productName">Product Name</label>
+    <label for="cnCodeId">CN Code ID</label>
     <input type="text"
-           id="productName"
-           name="productName"
-           value="${productNameFieldValue}"
+           id="cnCodeId"
+           name="cnCodeId"
+           value="${productCnCodeIdFieldValue}"
            placeholder="optional exact match"/>
 
     <button type="submit">Query Products</button>

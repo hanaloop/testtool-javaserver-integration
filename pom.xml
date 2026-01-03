@@ -133,6 +133,10 @@
 								</importMappings>
 								<useSpringBoot3>true</useSpringBoot3>
 								<useJakartaEe>true</useJakartaEe>
+                                <additionalProperties>
+                                    <!-- To prevent Optional Properties producing "present": true -->
+                                    <useJsonNullable>false</useJsonNullable>
+                                </additionalProperties>
 							</configOptions>
 
 							<apiPackage>com.hanaloop.hanaeco.api</apiPackage>
