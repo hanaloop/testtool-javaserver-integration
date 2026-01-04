@@ -59,7 +59,7 @@ Assuming the Hanaeco system (backend server and web application) is up, enter:
 
 Click "Save configuration", then use "Open Organization Lookup", "Product Lookup", or "Product emission factors".
 
-## Running in debug mode
+## Running in debug mode (IntelliJ community edition)
 
 To debug in IntelliJ, start the app in a separate process listening on the debug port:
 
